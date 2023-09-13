@@ -1,12 +1,15 @@
 import "./App.css";
 import { react, useState } from "react";
+import { MdOutlineNavigateNext } from "react-icons/md";
 
 function App() {
   const [question, setQuestion] = useState(1);
   const [name, setName] = useState("");
   const [type, setType] = useState("");
   const [turnover, setTurnover] = useState("");
-  const [website, setWebsite] = useState("");
+  const [email, setEmail] = useState("");
+  const [showMsg, setShowMsg] = useState(false);
+  const [msg, setMsg] = useState("");
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -14,9 +17,12 @@ function App() {
       name,
       type,
       turnover,
-      website,
+      email,
     };
     console.log(data);
+    setQuestion(5);
+    setMsg(`Welcome onboard ${name}`);
+    setShowMsg(true);
   };
 
   return (
@@ -31,9 +37,15 @@ function App() {
                 required
                 onChange={(e) => setName(e.target.value)}
               />
-              <button onClick={() => setQuestion(2)} type="button">
-                Next
-              </button>
+              {name.length > 0 && (
+                <div className="next-button-container">
+                  <MdOutlineNavigateNext
+                    onClick={() => setQuestion(2)}
+                    type="button"
+                    className="next-button"
+                  />
+                </div>
+              )}
             </div>
           </form>
           <form
@@ -61,9 +73,15 @@ function App() {
                 <option value="trust">Trust</option>
                 <option value="other">Other</option>
               </select>
-              <button onClick={() => setQuestion(3)} type="button">
-                Next
-              </button>
+              {type.length > 0 && (
+                <div className="next-button-container">
+                  <MdOutlineNavigateNext
+                    onClick={() => setQuestion(3)}
+                    type="button"
+                    className="next-button"
+                  />
+                </div>
+              )}
             </div>
           </form>
           <form
@@ -97,9 +115,15 @@ function App() {
                 </option>
                 <option value="Over $5 million">Over $5 million</option>
               </select>
-              <button onClick={() => setQuestion(4)} type="button">
-                Next
-              </button>
+              {turnover.length > 0 && (
+                <div className="next-button-container">
+                  <MdOutlineNavigateNext
+                    onClick={() => setQuestion(4)}
+                    type="button"
+                    className="next-button"
+                  />
+                </div>
+              )}
             </div>
           </form>
           <form
@@ -110,25 +134,66 @@ function App() {
                 ? "box start"
                 : question === 3
                 ? "box start"
-                : "box show"
+                : question === 4
+                ? "box show"
+                : "box end"
             }
           >
             <div className="input-container" required>
               <input
-                type="text"
-                placeholder="Enter your business website"
+                type="email"
+                placeholder="Enter your business email"
                 required
-                onChange={(e) => setWebsite(e.target.value)}
+                onChange={(e) => setEmail(e.target.value)}
               />
-              <button onClick={submitHandler}>Next</button>
+              {email.length > 0 && (
+                <div className="next-button-container">
+                  <MdOutlineNavigateNext
+                    onClick={submitHandler}
+                    className="next-button"
+                  />
+                </div>
+              )}
             </div>
           </form>
+
+          {/* here  */}
+
+          <form
+            className={
+              question === 1
+                ? "box start"
+                : question === 2
+                ? "box start"
+                : question === 3
+                ? "box start"
+                : question === 4
+                ? "box start"
+                : "box show"
+            }
+          >
+            <p className="msg">{msg}</p>
+          </form>
+
+          {/* here */}
         </div>
         <div className="question-container">
-          <div className="circle" onClick={() => setQuestion(1)}></div>
-          <div className="circle" onClick={() => setQuestion(2)}></div>
-          <div className="circle" onClick={() => setQuestion(3)}></div>
-          <div className="circle" onClick={() => setQuestion(4)}></div>
+          <div
+            className={question === 1 ? "circle circle-active" : "circle"}
+            onClick={() => setQuestion(1)}
+          ></div>
+          <div
+            className={question === 2 ? "circle circle-active" : "circle"}
+            onClick={() => setQuestion(2)}
+          ></div>
+          <div
+            className={question === 3 ? "circle circle-active" : "circle"}
+            onClick={() => setQuestion(3)}
+          ></div>
+          <div
+            className={question === 4 ? "circle circle-active" : "circle"}
+            onClick={() => setQuestion(4)}
+          ></div>
         </div>
       </div>
     </div>

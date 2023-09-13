@@ -23,14 +23,15 @@
 }
 
 .box {
-  height: 100px;
+  height: 80px;
   width: 600px;
   display: flex;
   justify-content: center;
   align-items: center;
   position: absolute;
   transition: all 0.3s;
-  background-color: red;
+  background-color: #00231d;
+  border-radius: 10px;
 }
 
 .show {
@@ -38,11 +39,11 @@
 }
 
 .end {
-  transform: rotateX(-90deg) translateY(50px) translateZ(50px);
+  transform: rotateX(-90deg) translateY(40px) translateZ(35px);
 }
 
 .start {
-  transform: rotateX(89deg) translateY(-50px) translateZ(50px);
+  transform: rotateX(89deg) translateY(-40px) translateZ(35px);
 }
 
 .input-container {
@@ -51,11 +52,31 @@
   align-items: center;
   width: 100%;
   padding: 0 5%;
+  border-radius: 10px;
+}
+
+.next-button-container {
+  height: 40px;
+  width: 40px;
+  border: 2px solid #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+}
+
+.next-button {
+  height: 20px;
+  width: 20px;
+  color: #fff;
 }
 
 .input-container input, select {
   width: 70%;
   padding: 10px;
+  height: 40px;
+  border-radius: 10px;
+  border: none;
 }
 
 .question-container {
@@ -64,12 +85,23 @@
   align-items: center;
   gap: 20px;
   position: relative;
-  top: 200px;
+  top: 100px;
 }
 
 .circle {
-  height: 30px;
-  width: 30px;
-  background-color: red;
+  height: 15px;
+  width: 15px;
+  background-color: #00231d;
   border-radius: 50%;
+  border: 2px solid #00231d;
+  transition: all 0.3s;
+}
+
+.circle-active {
+  background-color: #fff;
+  border: 2px solid #00231d;
+}
+
+.msg {
+  color: #fff;
 }
